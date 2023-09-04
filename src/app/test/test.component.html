@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="wclassth=device-wclassth, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Noto+Sans&family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<main>
+<div class="control-panel">
+  <button class="trans-dir btn" (click)="changeTransDir()">JAP : KOR</button>
+  <br>
+  <button class="show-english btn"
+          [ngClass]='{turnedOn: showEng}'
+          (click)="showEng = !showEng">SHOW ENGLISH</button>
+  <br>
+  <button class="show-polish btn"
+          [ngClass]='{turnedOn: showPol}'
+          (click)="showPol = !showPol">SHOW POLISH</button>
+
+  <div class="score-box">
+    <p class="correct">Correct answers: {{ correct }} </p>
+    <p class="wrong">Wrong answers:  {{ wrong }} </p>
+  </div>
+
+</div>
+  <div class="test-box">
+    <div class="displayed-word-box">
+      <h1 class="displayed-word"> {{ displayedWord }}</h1>
+      <span></span>
+      <p class=englishWord *ngIf="showEng"> {{ vocabs[randomNumber].english }} </p>
+      <p class=polishWord *ngIf="showPol"> {{ vocabs[randomNumber].polish }}  </p>
+    </div>
+
+    <div class="answer-box">
+      <input
+        id="enter-word"
+        class="input"
+        type="text"
+        [(ngModel)]='answer'
+        placeholder="Enter your answer"
+        autocomplete="off"
+      >
+    </div>
+    <input class="btn check" type="submit" value="Check" (click)='checkAnswer()'>
+  </div>
+
+  <div class="feedback-box">
+    <p class="feedback" [innerText]='feedback' *ngIf='showFeedback'></p>
+    <p class="feedback-answer" [innerText]='feedbackAnswer' *ngIf='showFeedback'></p>
+  </div>
+
+  <div class="word-array-box">
+    <ul>
+      <li *ngFor='let vocab of selectedVocab; let i = index ' [ngClass]="{'vocab-list-1' : i === CurrentWordIndex }">{{ vocab }}</li>
+    </ul>
+
+  </div>
+
+
+
+</main>
+
+</body>
+

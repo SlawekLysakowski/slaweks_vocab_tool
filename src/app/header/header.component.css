@@ -1,0 +1,68 @@
+#logo-div {
+  height: 9vh;
+  text-align: center;
+  margin: 0;
+  padding: 1rem;
+}
+
+#logo {
+  display: inline-block;
+  font-family: 'diplomata', cursive;
+  font-size: 3.5rem;
+  font-weight: 400;
+  color: #b6b4b4;
+}
+
+#memo {
+  display: inline-block;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-left: 1rem;
+}
+
+nav {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0 auto;
+  height: 12vh;
+  width: 75vw;
+  color: #b6b4b4;
+  background-color: #f5efef;
+}
+
+.btn {
+  color: #6b6969;
+  font-size: 2rem;
+  background-color: #f5efef;
+  border: none;
+  box-shadow: inset 0 0 0 2px #070707;
+}
+
+.btn:hover,
+.btn:active {
+  font-weight: bold;
+  background-color: #cceade;
+  cursor: pointer;
+}
+
+@media (max-width: 50rem) {
+  #logo  {
+    font-size: 2.5rem;
+  }
+
+  #memo {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (max-width: 35rem) {
+  #logo {
+    font-size: 2rem;
+  }
+
+  #memo {
+    width: 2rem;
+    height: 2rem;
+  }
+}

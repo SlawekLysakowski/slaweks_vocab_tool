@@ -1,0 +1,148 @@
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  margin:  0 auto;
+  height: 75vh;
+  width: 75vw;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  border-radius: 0 0 25px 25px;
+  background-color:#b6b4b4;
+}
+
+.control-panel {
+  margin: 1rem;
+}
+
+.correct {
+  font-size: 2rem;
+  color: #079f07;
+}
+
+.wrong {
+  font-size: 2rem;
+  color: #930c0c;
+}
+
+
+.test-box  {
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+  text-align: center;
+}
+
+.displayed-word-box {
+  height: 13rem;
+}
+
+.displayed-word {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 10rem;
+  text-shadow: 0 15px 5px rgba(0, 0, 0, 0.2);
+}
+
+.englishWord, .polishWord {
+  font-size: 2rem;
+}
+
+.answer-box {
+  display: flex;
+  margin-top: 8rem;
+  grid-row: 2 / 3;
+  justify-content: center;
+}
+
+.enter-word {
+  background-color: #f5efef;
+  text-align: center;
+  width: 15rem;
+  height: 3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px #cceade;
+  border: none;
+
+}
+.enter-word:hover, .enter-word:active {
+  box-shadow: inset 0 0 0 3px #cceade;
+}
+
+.enter-word:focus {
+  border: 2px solid #31b2a9;
+}
+
+.word-array-box {
+  display: grid;
+  position: relative;
+  grid-column: 3 / 4;
+  grid-row: 1 / 3;
+  margin-top: 1rem;
+  letter-spacing: 0.1rem;
+  font-weight: 500;
+  justify-self: center;
+  align-self: start;
+}
+
+.feedback-box {
+  grid-column: 1 / 4;
+  grid-row: 2 / 3;
+  justify-self: center;
+  align-self: start;
+  margin-top: 6rem;
+}
+
+.btn,
+.btn:link,
+.btn:visited {
+  display: inline-block;
+  width: 15rem;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+  border-radius: 9px;
+  border: 1px solid #070707;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn:hover,
+.btn:active {
+  color: #f5efef !important;
+  background-color: #424241;
+}
+
+*:focus {
+  outline: none;
+}
+
+::placeholder {
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.feedback, .feedback-answer {
+  margin-top: 2rem;
+  justify-content: center;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.turnedOn {
+  background-color: #000;
+  color: #fff;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  font-size: 2.6rem;
+}
+
+.vocab-list-1 {
+  color: #fa0505;
+}
