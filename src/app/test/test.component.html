@@ -36,7 +36,6 @@
 
     <div class="answer-box">
       <input
-        id="enter-word"
         class="input"
         type="text"
         [(ngModel)]='answer'
@@ -54,7 +53,7 @@
 
   <div class="word-array-box">
     <ul>
-      <li *ngFor='let vocab of selectedVocab; let i = index ' [ngClass]="{'vocab-list-1' : i === CurrentWordIndex }">{{ vocab }}</li>
+      <li *ngFor='let vocab of selectedVocab; let i = index ' [ngClass]="{'currentVocab' : i === CurrentWordIndex }">{{ vocab }}</li>
     </ul>
 
   </div>
