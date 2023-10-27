@@ -1,5 +1,5 @@
 export interface VocabModel {
-  _id: string,
+  id: string,
   japanese: string,
   korean: string,
   english: string,

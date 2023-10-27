@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { VocabModel } from '../vocab.model'
+import { VocabService } from '../vocab.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-test',
@@ -8,63 +10,50 @@ import { VocabModel } from '../vocab.model'
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit{
+  isLoading = false;
+  private vocabsSub: Subscription;
+  showTest: boolean = false;
   japToKor: boolean = true;
   showEng: boolean = false;
   showPol: boolean = false;
   answer: string;
+  correctAnsArr: string[];
   showFeedback: boolean = false;
-  feedback: string;
-  feedbackAnswer: string;
+  feedback: string = '';
+  feedbackAnswer: string = '';
   displayedWord: string;
-  vocabs: VocabModel[];
-  selectedVocab: string[];
-  randomNumber: number;
+  vocabArr: VocabModel[];
   CurrentWordIndex: number;
   correct: number = 0;
   wrong: number = 0;
+  vocabs: VocabModel[];
 
-  vocabModel: VocabModel[] = [
-    {
-      _id: '0',
-      japanese: '家',
-      korean: '집',
-      english: 'house',
-      polish: 'dom'
-    },
-    {
-      _id: '1',
-      japanese: '蚊',
-      korean: '모기',
-      english: 'mosquito',
-      polish: 'komar'
-    },
-    {
-      _id: '2',
-      japanese: '利益',
-      korean: '이익',
-      english: 'profit',
-      polish: 'zysk'
-    },
-  ]
+  constructor(public vocabService: VocabService, private http: HttpClient) {}
 
-
+  ngOnInit() {
+    this.isLoading = true;
+    this.vocabService.getVocabs();
+    this.vocabsSub = this.vocabService.getVocabUpdateListener()
+      .subscribe(( vocabs: VocabModel[]) => {
+        this.isLoading = false;
+        this.vocabs = vocabs;
+        this.newVocabArr();
+        this.newWord();
+      });
+  }
 
   newRandomNumber() {
-    return Math.trunc(Math.random() * this.vocabModel.length);
+    return Math.trunc(Math.random() * this.vocabs.length);
   }
 
   newVocabArr() {
-    this.vocabs = new Array(10).fill(null).map(() => this.vocabModel[this.newRandomNumber()]);
-    this.selectedVocab = new Array(10);
-    for (let i = 0; i < this.vocabs.length; i++) {
-      this.selectedVocab[i] = this.japToKor? this.vocabs[i].japanese : this.vocabs[i].korean;
-    }
+    this.vocabArr = new Array(10).fill(null).map(() => this.vocabs[this.newRandomNumber()]);
   }
 
   newWord() {
-    this.randomNumber = Math.trunc(Math.random() * this.vocabs.length);
-    this.CurrentWordIndex = this.randomNumber;
-    this.displayedWord = this.japToKor? this.vocabs[this.randomNumber].japanese : this.vocabs[this.randomNumber].korean;
+    if (this.vocabArr.length === 0) this.newVocabArr();
+    this.CurrentWordIndex = Math.trunc(Math.random() * this.vocabArr.length);
+    this.displayedWord = this.japToKor? this.vocabArr[this.CurrentWordIndex].japanese : this.vocabArr[this.CurrentWordIndex].korean;
   }
 
   changeTransDir() {
@@ -73,24 +62,48 @@ export class TestComponent implements OnInit{
     this.newVocabArr();
     this.newWord();
   }
+  rightAnswer() {
+    this.correct++;
+    this.feedback = 'Correct! ^_^';
+    this.feedbackAnswer = '';
+    this.vocabArr.splice(this.CurrentWordIndex, 1);
+    this.newWord();
+  }
+
+  wrongAnswer() {
+    this.wrong++;
+    this.feedback ='wrong answer (┬┬﹏┬┬)';
+    this.feedbackAnswer = `Correct answer was ${this.correctAnsArr}`;
+    this.newWord();
+  }
 
   checkAnswer() {
-    const correctAnswer = this.japToKor? this.vocabs[this.randomNumber].korean : this.vocabs[this.randomNumber].japanese;
+    this.correctAnsArr = this.japToKor?
+      this.vocabArr[this.CurrentWordIndex].korean.split(",")
+      :
+      this.vocabArr[this.CurrentWordIndex].japanese.split(",");
+
+    this.correctAnsArr.forEach((meaning, i) => {
+        this.correctAnsArr[i] = meaning.trim();
+      })
+
     this.showFeedback = true;
+
     setTimeout(() => {
       this.showFeedback = false
     },2000);
 
-    if (this.answer === correctAnswer) {
-    this.feedback = 'Correct! ^_^'
-  } else {
-    this.feedback ='wrong answer (┬┬﹏┬┬)';
-    this.feedbackAnswer = `Correct answer was ${correctAnswer}`;
-  }
+    if (this.correctAnsArr.includes(this.answer)) {
+      this.rightAnswer();
+    } else {
+      this.wrongAnswer();
+    }
   }
 
-  ngOnInit() {
-    this.newVocabArr();
-    this.newWord();
+  onEnter(event) {
+    if (event.keyCode===13) {
+      this.checkAnswer()
+    }
   }
+
 }

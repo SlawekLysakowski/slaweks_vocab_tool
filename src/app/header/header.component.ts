@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +8,22 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  constructor(private location: Location) {
+    this.location.onUrlChange(currentUrl => this.urlChange(currentUrl));
+  }
+
+  urlChange(currentUrl) {
+    if (currentUrl.includes('edit')) {
+      document.querySelector('.nav-btn-add').classList.add('disable');
+    } else {
+      document.querySelector('.nav-btn-add').classList.remove('disable')
+    }
+  }
+
 }
+
+
+
+
+
+

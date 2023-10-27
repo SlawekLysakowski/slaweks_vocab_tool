@@ -37,7 +37,7 @@ main {
 
 .displayed-word {
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: 10rem;
+  font-size: 8rem;
   text-shadow: 0 15px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -109,7 +109,7 @@ main {
 
 .btn:hover,
 .btn:active {
-  color: #f5efef !important;
+  color: #f5efef;
   background-color: #424241;
 }
 

@@ -28,9 +28,11 @@ nav {
   width: 75vw;
   color: #b6b4b4;
   background-color: #f5efef;
+  text-align: center;
+
 }
 
-.btn {
+.nav-btn, .nav-btn-add {
   color: #6b6969;
   font-size: 2rem;
   background-color: #f5efef;
@@ -41,11 +43,21 @@ nav {
   /*box-shadow: inset 0 0 0 2px #070707;*/
 }
 
-.btn:hover,
-.btn:active {
+a {
+  padding-top: 2rem;
+  color: #6b6969;
+  text-decoration: none;
+}
+
+.nav-btn:hover,
+.nav-btn:active {
   font-weight: bold;
   background-color: #cceade;
   cursor: pointer;
+}
+
+.disable {
+  display: none;
 }
 
 @media (max-width: 50rem) {

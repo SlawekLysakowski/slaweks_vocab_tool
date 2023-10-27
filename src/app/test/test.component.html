@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="wclassth=device-wclassth, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Noto+Sans&family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
 </head>
 
 <body>
-<main>
+<app-spinner *ngIf='isLoading'></app-spinner>
+<main *ngIf='!isLoading'>
 <div class="control-panel">
   <button class="trans-dir btn" (click)="changeTransDir()">JAP : KOR</button>
   <br>
@@ -30,20 +31,28 @@
     <div class="displayed-word-box">
       <h1 class="displayed-word"> {{ displayedWord }}</h1>
       <span></span>
-      <p class=englishWord *ngIf="showEng"> {{ vocabs[randomNumber].english }} </p>
-      <p class=polishWord *ngIf="showPol"> {{ vocabs[randomNumber].polish }}  </p>
+      <p class=englishWord *ngIf="showEng"> {{ vocabArr[CurrentWordIndex].english }} </p>
+      <p class=polishWord *ngIf="showPol"> {{ vocabArr[CurrentWordIndex].polish }}  </p>
     </div>
 
     <div class="answer-box">
       <input
         class="input"
         type="text"
+        id='answer'
+        name='answer'
         [(ngModel)]='answer'
+        required
+        minlength='1'
         placeholder="Enter your answer"
         autocomplete="off"
       >
     </div>
-    <input class="btn check" type="submit" value="Check" (click)='checkAnswer()'>
+    <input class="btn check" type="submit" value="Check"
+           (window:keypress)="onEnter($event)"
+           (keydown.enter)="checkAnswer()"
+           (click)='checkAnswer()'
+    >
   </div>
 
   <div class="feedback-box">
@@ -53,14 +62,9 @@
 
   <div class="word-array-box">
     <ul>
-      <li *ngFor='let vocab of selectedVocab; let i = index ' [ngClass]="{'currentVocab' : i === CurrentWordIndex }">{{ vocab }}</li>
+            <li *ngFor='let vocab of vocabArr; let i = index ' [ngClass]="{'currentVocab' : i === CurrentWordIndex }">{{ japToKor? vocab.japanese : vocab.korean }}</li>
     </ul>
-
   </div>
-
-
-
 </main>
-
 </body>
 
