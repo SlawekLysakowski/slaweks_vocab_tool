@@ -8,8 +8,9 @@
 </head>
 
 <body>
-<app-spinner *ngIf='isLoading'></app-spinner>
-<main *ngIf='!isLoading'>
+
+<main>
+  <app-spinner *ngIf='isLoading'></app-spinner>
 <div class="control-panel">
   <button class="trans-dir btn" (click)="changeTransDir()">JAP : KOR</button>
   <br>

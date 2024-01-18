@@ -7,8 +7,8 @@
   font-weight: 600;
 }
 
-
 html {
+  height: 100%;
   font-size: 62.5%;
 }
 
@@ -35,12 +35,3 @@ html {
   color: #f5efef;
   background-color: #424241;
 }
-
-
-html, body {
-  height: 100%;
-}
-body {
-  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-

@@ -32,15 +32,38 @@ router.put('/:id', (req, res, next) => {
   });
 });
 
+// router.get('', (req, res, next) => {
+//   const vocabs = [];
+//
+//   Vocab.find().then(documents => {
+//     res.status(200).json({
+//       vocabs: documents
+//     });
+//   });
+// });
 router.get('', (req, res, next) => {
-  const vocabs = [];
-
-  Vocab.find().then(documents => {
+const pageSize = +req.query.pagesize;
+const currentPage = +req.query.page;
+const vocabQuery = Vocab.find();
+let fetchedVocabs;
+if (pageSize && currentPage) {
+  vocabQuery
+    .skip(pageSize * (currentPage - 1))
+    .limit(pageSize);
+}
+vocabQuery.then((documents) => {
+  fetchedVocabs = documents
+  return Vocab.count();
+})
+  .then(count => {
     res.status(200).json({
-      vocabs: documents
-    });
+      message: 'Vocabs fetched successfully!',
+      vocabs: fetchedVocabs,
+      maxVocabs: count
+    })
   });
 });
+
 
 router.get('/:id', (req, res, next) => {
   Vocab.findById(req.params.id).then(vocab => {

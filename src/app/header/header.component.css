@@ -25,7 +25,7 @@ nav {
   grid-template-columns: repeat(2, 1fr);
   margin: 0 auto;
   height: 12vh;
-  width: 75vw;
+  width: 90vw;
   color: #b6b4b4;
   background-color: #f5efef;
   text-align: center;
@@ -44,7 +44,7 @@ nav {
 }
 
 a {
-  padding-top: 2rem;
+  padding-top: 2.5rem;
   color: #6b6969;
   text-decoration: none;
 }

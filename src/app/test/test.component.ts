@@ -33,7 +33,7 @@ export class TestComponent implements OnInit{
   ngOnInit() {
     this.isLoading = true;
     this.vocabService.getVocabs();
-    this.vocabsSub = this.vocabService.getVocabUpdateListener()
+    this.vocabsSub = this.vocabService.getVocUpdateListener()
       .subscribe(( vocabs: VocabModel[]) => {
         this.isLoading = false;
         this.vocabs = vocabs;

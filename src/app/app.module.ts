@@ -7,13 +7,14 @@ import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { VocabListComponent } from './vocab-list/vocab-list.component';
 import { VocabCreateComponent } from './vocab-create/vocab-create.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { LoadingInterceptor } from './loading.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from "@angular/material/paginator";
+
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HeaderComponent,
     VocabListComponent,
     VocabCreateComponent,
-
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatPaginatorModule
   ],
   providers: [
     {

@@ -5,14 +5,46 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { VocabModel } from './vocab.model';
+import { environment } from '../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class VocabService {
   private vocabs: VocabModel[] = [];
   private vocabsUpdated = new Subject<VocabModel[]>();
+  private VocabsWithCount = new Subject<{ vocabs: VocabModel[]; vocabCount: number }>();
 
   constructor(private http: HttpClient, private router: Router) {
   }
+
+  getVocabsWithPagination(vocabsPerPage: number, currentPage: number) {
+      const queryParams = `?pagesize=${vocabsPerPage}&page=${currentPage}`;
+      this.http
+        .get<{ message: string, vocabs: any, maxVocabs: number }>(
+          'http://localhost:3000/api/vocabs' + queryParams
+        )
+        .pipe(
+          map((vocabData) => {
+            return {vocabs: vocabData.vocabs.map((vocab) => {
+                return {
+                  japanese: vocab.japanese,
+                  korean: vocab.korean,
+                  english: vocab.english,
+                  polish: vocab.polish,
+                  id: vocab._id,
+                };
+              }),
+              maxVocabs: vocabData.maxVocabs
+            };
+          })
+        )
+        .subscribe((transformedVocabData) => {
+          this.vocabs = transformedVocabData.vocabs;
+          this.VocabsWithCount.next({
+            vocabs: [...this.vocabs],
+            vocabCount: transformedVocabData.maxVocabs
+          });
+        });
+    }
 
   getVocabs() {
     this.http.get<{ message: string, vocabs: any }>('http://localhost:3000/api/vocabs')
@@ -35,8 +67,12 @@ export class VocabService {
       })
   }
 
-  getVocabUpdateListener() {
+  getVocUpdateListener() {
     return this.vocabsUpdated.asObservable();
+  }
+
+  getVocUpdListenerPagination() {
+    return this.VocabsWithCount.asObservable();
   }
 
   addVocab(japanese: string, korean: string, english: string, polish: string) {
@@ -71,15 +107,11 @@ export class VocabService {
   }
 
   deleteVocab(vocabId: string) {
-    this.http.delete('http://localhost:3000/api/vocabs/' + vocabId)
-      .subscribe(() => {
-        const updatedVocabs = this.vocabs.filter(vocab => vocab.id !== vocabId);
-        this.vocabs = updatedVocabs;
-        this.vocabsUpdated.next([...this.vocabs]);
-      })
+   return this.http
+     .delete(environment.apiUrl + 'vocabs/' + vocabId);
   }
 
   getVocab(id: string) {
-    return this.http.get<VocabModel>('http://localhost:3000/api/vocabs/' + id);
+    return this.http.get<VocabModel>(environment.apiUrl + 'vocabs/' + id);
   };
 }
