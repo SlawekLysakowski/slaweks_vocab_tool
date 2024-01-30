@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Noto+Sans&family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<main>
+  <app-spinner *ngIf='isLoading'></app-spinner>
+
+
+  <div *ngIf='vocabs.length > 0 && !isLoading' class='list-container'>
+
+    <div *ngIf='showConf' class='del-conf'>
+      <p>Are you sure you want to delete this vocabulary?</p>
+      <button class='btn yes' (click)='onDelete()'>Yes</button>
+      <button class='btn no' (click)='onCancel()'>No</button>
+    </div>
+
+  <div *ngFor='let vocab of vocabs' class='list-vocabs'>
+      <div class='list-item'>{{ vocab.japanese }}</div>
+      <div class='list-item'>{{ vocab.korean }}</div>
+      <div class='list-item'>{{ vocab.english }}</div>
+      <div class='list-item'>{{ vocab.polish }}</div>
+      <div class='list-buttons'>
+        <a class='btn edit' [routerLink]="['/edit', vocab.id]">EDIT</a>
+        <button class='btn delete' [currentID]='vocab.id' (click)='onConfirm(vocab.id)' >DEL</button>
+      </div>
+  </div>
+
+
+    <mat-paginator
+      color='accent'
+      [length]="totalVocabs"
+      [pageSize]="vocabsPerPage"
+      [pageSizeOptions] = 'pageSizeOptions'
+      (page)="onChangedPage($event)"
+      *ngIf="vocabs.length > 0"
+    ></mat-paginator>
+  </div>
+  <p *ngIf='vocabs.length <= 0 && !isLoading' class='noVocabInfo'>No vocabulary added yet!</p>
+
+</main>
+</body>
+
+
+
+
+
+

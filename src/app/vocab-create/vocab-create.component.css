@@ -1,0 +1,29 @@
+main {
+  display: grid;
+  margin:  0 auto;
+  height: 75vh;
+  width: 90vw;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  border-radius: 0 0 25px 25px;
+  background-color:#b6b4b4;
+  justify-content: center;
+}
+
+input {
+  text-align: center;
+}
+
+.form {
+  margin-top: 2rem;
+}
+
+.btn,
+.btn:link,
+.btn:visited {
+  width: 15rem;
+  margin: 1rem 6rem;
+}
+
+.btn:hover,
+.btn:active {
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Noto+Sans&family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<main>
+  <app-spinner *ngIf='isLoading'></app-spinner>
+  <form class='form' (submit)="onSaveVocab(postForm)" #postForm="ngForm" *ngIf='!isLoading'>
+    <input
+      [ngModel]="vocab?.japanese"
+      #japanese="ngModel"
+      name="japanese"
+      type="text"
+      placeholder="Japanese"
+      required
+    />
+    <br>
+
+    <input
+      [ngModel]="vocab?.korean"
+      #korean="ngModel"
+      name="korean"
+      type="text"
+      placeholder="Korean"
+      required
+    />
+    <br>
+
+    <input
+      [ngModel]="vocab?.english"
+      #english="ngModel"
+      name="english"
+      type="text"
+      placeholder="English"
+      required
+    />
+    <br>
+
+    <input
+      [ngModel]="vocab?.polish"
+      #polish="ngModel"
+      name="polish"
+      type="text"
+      placeholder="Polish"
+      required
+    />
+    <br>
+
+    <button class="btn" type="submit">Save vocab</button>
+  </form>
+</main>
+<body>
+

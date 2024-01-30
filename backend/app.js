@@ -1,3 +1,4 @@
+const path = require('path');
 const dotenv = require('dotenv');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -20,6 +21,12 @@ mongoose
   });
 
 app.use(bodyParser.json());
+
+app.use("/", express.static(path.join(__dirname, "../dist/slaweks_vocab_tool")));
+
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "../dist/slaweks_vocab_tool/index.html"));
+});
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');

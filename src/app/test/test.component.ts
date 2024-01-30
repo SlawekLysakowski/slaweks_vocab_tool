@@ -86,12 +86,11 @@ export class TestComponent implements OnInit{
     this.correctAnsArr.forEach((meaning, i) => {
         this.correctAnsArr[i] = meaning.trim();
       })
-
     this.showFeedback = true;
 
     setTimeout(() => {
       this.showFeedback = false
-    },2000);
+    },2500);
 
     if (this.correctAnsArr.includes(this.answer)) {
       this.rightAnswer();
@@ -105,5 +104,4 @@ export class TestComponent implements OnInit{
       this.checkAnswer()
     }
   }
-
 }
