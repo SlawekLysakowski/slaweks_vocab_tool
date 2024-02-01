@@ -22,11 +22,12 @@ mongoose
 
 app.use(bodyParser.json());
 
+// *** for Heroku deployment ***
 app.use("/", express.static(path.join(__dirname, "../dist/slaweks_vocab_tool")));
-
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "../dist/slaweks_vocab_tool/index.html"));
 });
+// *** for Heroku deployment ***
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');

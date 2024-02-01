@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { VocabModel } from './vocab.model';
 import { environment } from '../environments/environment';
 
+const BACKEND_URL = environment.apiUrl + 'vocabs/';
+
 @Injectable({providedIn: 'root'})
 export class VocabService {
   private vocabs: VocabModel[] = [];
@@ -20,7 +22,7 @@ export class VocabService {
       const queryParams = `?pagesize=${vocabsPerPage}&page=${currentPage}`;
       this.http
         .get<{ message: string, vocabs: any, maxVocabs: number }>(
-          'http://localhost:3000/api/vocabs' + queryParams
+          BACKEND_URL + queryParams
         )
         .pipe(
           map((vocabData) => {
@@ -47,7 +49,7 @@ export class VocabService {
     }
 
   getVocabs() {
-    this.http.get<{ message: string, vocabs: any }>('http://localhost:3000/api/vocabs')
+    this.http.get<{ message: string, vocabs: any }>(BACKEND_URL)
       .pipe(
         map((vocabData) => {
           return vocabData.vocabs.map((vocab) => {
@@ -83,7 +85,7 @@ export class VocabService {
       english: english,
       polish: polish
     };
-    this.http.post<{ message: string, vocabId: string }>('http://localhost:3000/api/vocabs', vocab)
+    this.http.post<{ message: string, vocabId: string }>(BACKEND_URL, vocab)
       .subscribe((responseData) => {
         const vocabId = responseData.vocabId;
         vocab.id = vocabId;
@@ -95,7 +97,7 @@ export class VocabService {
 
   updateVocab(vocabId: string, japanese: string, korean: string, english: string, polish: string) {
     const vocab: VocabModel = { id: vocabId, japanese: japanese, korean: korean, english: english, polish: polish }
-    this.http.put('http://localhost:3000/api/vocabs/' + vocabId, vocab)
+    this.http.put(BACKEND_URL + vocabId, vocab)
       .subscribe(response => {
         const updatedVocabs = [...this.vocabs];
         const oldVocabIndex = updatedVocabs.findIndex(v => v.id === vocab.id);
@@ -112,6 +114,6 @@ export class VocabService {
   }
 
   getVocab(id: string) {
-    return this.http.get<VocabModel>(environment.apiUrl + 'vocabs/' + id);
+    return this.http.get<VocabModel>(BACKEND_URL + id);
   };
 }
