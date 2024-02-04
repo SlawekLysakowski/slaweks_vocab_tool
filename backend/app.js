@@ -22,13 +22,6 @@ mongoose
 
 app.use(bodyParser.json());
 
-// *** for Heroku deployment ***
-app.use("/", express.static(path.join(__dirname, "../dist/slaweks_vocab_tool")));
-app.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, "../dist/slaweks_vocab_tool/index.html"));
-});
-// *** for Heroku deployment ***
-
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader(
@@ -39,10 +32,14 @@ app.use((req, res, next) => {
     'Access-Control-Allow-Methods',
     'GET, POST, PATCH, PUT, DELETE, OPTIONS'
   );
-
   next();
 });
 
 app.use('/api/vocabs', vocabRoutes);
+app.use("/", express.static(path.join(__dirname, "angular")));
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, 'angular', 'index.html'));
+});
+
 
 module.exports = app;
