@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
+import { Subscription } from 'rxjs';
+
 import { VocabService } from '../vocab.service';
 import { VocabModel } from '../vocab.model';
-import { Subscription } from 'rxjs';
-import { PageEvent } from '@angular/material/paginator';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vocab-list',
@@ -15,16 +15,16 @@ export class VocabListComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   private vocabsSub: Subscription;
   showConf: boolean = false;
-  totalVocabs = 7;
+  totalVocabs = 0;
   vocabsPerPage = 10;
   currentPage = 1;
   pageSizeOptions = [5, 10, 20];
   currentID: string;
 
-  constructor(public vocabService: VocabService, private router: Router) {}
+  constructor(public vocabService: VocabService) {}
 
   ngOnInit(): void {
-    this.isLoading = false;
+    this.isLoading = true;
     this.vocabService.getVocabsWithPagination(
       this.vocabsPerPage,
       this.currentPage,
@@ -33,9 +33,9 @@ export class VocabListComponent implements OnInit, OnDestroy {
     this.vocabsSub = this.vocabService
       .getVocUpdListenerPagination()
       .subscribe((vocabData: { vocabs: VocabModel[]; vocabCount: number }) => {
-        this.isLoading = false;
         this.totalVocabs = vocabData.vocabCount;
         this.vocabs = vocabData.vocabs;
+        this.isLoading = false;
       });
   }
 
@@ -56,23 +56,26 @@ export class VocabListComponent implements OnInit, OnDestroy {
       });
   }
 
-  onCancel() {
-    this.showConf = false;
-    this.currentID = null;
-    // this.router.navigate(['/list'])
-  }
-
-  ngOnDestroy(): void {
-    this.vocabsSub.unsubscribe();
-  }
-
   onChangedPage(pageData: PageEvent) {
-    this.isLoading = true;
+    this.isLoading = false;
+    console.log('not happening');
+    console.log('page data: ' + pageData);
     this.currentPage = pageData.pageIndex + 1;
+    console.log(this.currentPage);
     this.vocabsPerPage = pageData.pageSize;
     this.vocabService.getVocabsWithPagination(
       this.vocabsPerPage,
       this.currentPage,
     );
   }
+
+  onCancel() {
+    this.showConf = false;
+    this.currentID = null;
+  }
+
+  ngOnDestroy(): void {
+    this.vocabsSub.unsubscribe();
+  }
+
 }

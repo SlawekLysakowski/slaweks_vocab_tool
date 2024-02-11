@@ -14,7 +14,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { LoadingInterceptor } from './loading.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from "@angular/material/paginator";
-
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -32,6 +32,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatButtonModule,
     MatPaginatorModule
   ],
   providers: [

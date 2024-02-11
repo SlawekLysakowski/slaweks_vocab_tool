@@ -40,6 +40,7 @@ export class VocabService {
           })
         )
         .subscribe((transformedVocabData) => {
+          console.log(transformedVocabData);
           this.vocabs = transformedVocabData.vocabs;
           this.VocabsWithCount.next({
             vocabs: [...this.vocabs],

@@ -31,14 +31,13 @@
       </div>
   </div>
 
-
     <mat-paginator
       color='accent'
+      *ngIf="vocabs.length > 0 && !isLoading"
       [length]="totalVocabs"
       [pageSize]="vocabsPerPage"
-      [pageSizeOptions] = 'pageSizeOptions'
+      [pageSizeOptions] ="pageSizeOptions"
       (page)="onChangedPage($event)"
-      *ngIf="vocabs.length > 0"
     ></mat-paginator>
   </div>
   <p *ngIf='vocabs.length <= 0 && !isLoading' class='noVocabInfo'>No vocabulary added yet!</p>
