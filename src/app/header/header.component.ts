@@ -1,5 +1,6 @@
 import { Component, Renderer2 } from '@angular/core';
 import {Location} from '@angular/common';
+import { VocabService } from '../vocab.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,7 @@ import {Location} from '@angular/common';
 })
 export class HeaderComponent {
 
-  constructor(private location: Location) {
+  constructor(private location: Location, public vocabService: VocabService) {
     this.location.onUrlChange(currentUrl => this.urlChange(currentUrl));
   }
 

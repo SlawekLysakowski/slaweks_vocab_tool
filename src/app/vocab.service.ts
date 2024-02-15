@@ -14,6 +14,7 @@ export class VocabService {
   private vocabs: VocabModel[] = [];
   private vocabsUpdated = new Subject<VocabModel[]>();
   private VocabsWithCount = new Subject<{ vocabs: VocabModel[]; vocabCount: number }>();
+  public isTest: boolean;
 
   constructor(private http: HttpClient, private router: Router) {
   }
@@ -40,7 +41,6 @@ export class VocabService {
           })
         )
         .subscribe((transformedVocabData) => {
-          console.log(transformedVocabData);
           this.vocabs = transformedVocabData.vocabs;
           this.VocabsWithCount.next({
             vocabs: [...this.vocabs],

@@ -18,13 +18,14 @@ export class VocabListComponent implements OnInit, OnDestroy {
   totalVocabs = 0;
   vocabsPerPage = 10;
   currentPage = 1;
-  pageSizeOptions = [5, 10, 20];
+  pageSizeOptions = [1, 5, 10];
   currentID: string;
 
   constructor(public vocabService: VocabService) {}
 
   ngOnInit(): void {
     this.isLoading = true;
+    this.vocabService.isTest = false;
     this.vocabService.getVocabsWithPagination(
       this.vocabsPerPage,
       this.currentPage,
@@ -58,10 +59,7 @@ export class VocabListComponent implements OnInit, OnDestroy {
 
   onChangedPage(pageData: PageEvent) {
     this.isLoading = false;
-    console.log('not happening');
-    console.log('page data: ' + pageData);
     this.currentPage = pageData.pageIndex + 1;
-    console.log(this.currentPage);
     this.vocabsPerPage = pageData.pageSize;
     this.vocabService.getVocabsWithPagination(
       this.vocabsPerPage,

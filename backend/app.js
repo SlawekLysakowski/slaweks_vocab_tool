@@ -8,7 +8,6 @@ const vocabRoutes = require('./routes/vocabs')
 
 dotenv.config({ path: './config.env' });
 
-
 const app = express();
 
 mongoose
@@ -40,6 +39,5 @@ app.use("/", express.static(path.join(__dirname, "angular")));
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, 'angular', 'index.html'));
 });
-
 
 module.exports = app;

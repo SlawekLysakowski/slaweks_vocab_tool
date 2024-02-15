@@ -24,6 +24,7 @@ export class VocabCreateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.vocabService.isTest = false;
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('vocabId')) {
         this.mode = 'edit';

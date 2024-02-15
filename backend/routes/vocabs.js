@@ -77,7 +77,6 @@ router.get('/:id', (req, res, next) => {
 
 router.delete('/:id', (req, res, next) => {
   Vocab.deleteOne({ _id: req.params.id}).then(result => {
-    console.log(result);
     res.status(200).json({ message: 'Vocab deleted successfully', });
   });
 });

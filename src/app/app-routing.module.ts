@@ -6,7 +6,7 @@ import { VocabListComponent } from './vocab-list/vocab-list.component';
 import { VocabCreateComponent } from './vocab-create/vocab-create.component';
 
 const routes: Routes = [
-  { path: 'test', component: TestComponent },
+  { path: '', component: TestComponent },
   { path: 'list', component: VocabListComponent },
   { path: 'create', component: VocabCreateComponent },
   { path: 'edit/:vocabId', component: VocabCreateComponent },
