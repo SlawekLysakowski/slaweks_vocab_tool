@@ -100,3 +100,10 @@ p {
 mat-paginator {
   background-color: #b6b4b4;
 }
+
+/* Mobile version */
+@media (max-width: 35em) {
+  main {
+    width: 100vw;
+  }
+}

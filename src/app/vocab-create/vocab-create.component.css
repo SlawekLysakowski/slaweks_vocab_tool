@@ -14,16 +14,22 @@ input {
 }
 
 .form {
-  margin-top: 2rem;
+  margin: auto;
 }
 
 .btn,
 .btn:link,
 .btn:visited {
-  width: 15rem;
+  width: 12rem;
   margin: 1rem 6rem;
 }
 
 .btn:hover,
 .btn:active {
+}
+
+@media (max-width: 35em) {
+  main {
+    width: 100vw;
+  }
 }
