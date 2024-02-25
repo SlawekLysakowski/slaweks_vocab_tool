@@ -11,16 +11,19 @@
 
 <main>
   <app-spinner *ngIf='isLoading'></app-spinner>
+
 <div class="control-panel">
-  <button class="trans-dir btn" (click)="changeTransDir()">JAP : KOR</button>
-  <br>
-  <button class="show-english btn"
-          [ngClass]='{turnedOn: showEng}'
-          (click)="showEng = !showEng">SHOW ENGLISH</button>
-  <br>
-  <button class="show-polish btn"
-          [ngClass]='{turnedOn: showPol}'
-          (click)="showPol = !showPol">SHOW POLISH</button>
+  <div class='button-box'>
+    <button class="trans-dir btn" (click)="changeTransDir()">JAP : KOR</button>
+    <br>
+    <button class="show-english btn"
+            [ngClass]='{turnedOn: showEng}'
+            (click)="showEng = !showEng">SHOW ENGLISH</button>
+    <br>
+    <button class="show-polish btn"
+            [ngClass]='{turnedOn: showPol}'
+            (click)="showPol = !showPol">SHOW POLISH</button>
+  </div>
 
   <div class="score-box">
     <p class="correct">Correct answers: {{ correct }} </p>

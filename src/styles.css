@@ -36,3 +36,17 @@ html {
   background-color: #424241;
 }
 
+/* Mobile version */
+@media (max-width: 35em) {
+  main {
+  width: 100vw;
+}
+  .btn,
+  .btn:link,
+  .btn:visited {
+    width: 8rem;
+  }
+
+}
+
+
