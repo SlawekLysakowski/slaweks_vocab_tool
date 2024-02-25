@@ -184,7 +184,7 @@ li {
   .button-box {
     display: flex;
     justify-content: space-between;
-    margin: 1rem;
+    margin: 0.5rem 2rem 0 0;
   }
 
   .score-box {
@@ -196,6 +196,10 @@ li {
     font-size: 1.5rem;
   }
 
+  .wrong {
+    margin-right: 2rem;
+  }
+
   .test-box {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
@@ -204,6 +208,7 @@ li {
   .word-display-box {
     display: flex;
     justify-content: space-between;
+    margin: 0.5rem 2rem 0 0;
   }
 
   .word-array-box {
