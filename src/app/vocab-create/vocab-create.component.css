@@ -30,6 +30,6 @@ input {
 
 @media (max-width: 35em) {
   main {
-    width: 100vw;
+    width: 95vw;
   }
 }

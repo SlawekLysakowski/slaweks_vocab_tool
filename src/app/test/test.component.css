@@ -164,7 +164,7 @@ li {
     grid-template-rows: repeat(3, 1fr);
     margin:  0 auto;
     height: 75vh;
-    width: 100vw;
+    width: 95vw;
     border: 1px solid rgba(0, 0, 0, 0.02);
     border-radius: 0 0 25px 25px;
     background-color:#b6b4b4;
@@ -173,15 +173,26 @@ li {
   .control-panel {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
-    margin: 1rem 0.1rem;
   }
+
+  .trans-dir {
+    display: flex;
+    margin: 1rem auto;
+    justify-content: center;
+  }
+
   .button-box {
     display: flex;
-    margin: 1rem 0 0 0.25rem;
+    justify-content: space-between;
+    margin: 0 3rem 0 1rem;
   }
+
   .score-box {
     display: flex;
+    justify-content: space-between;
+    margin-right: 3rem;
   }
+
   .correct {
     margin-right: auto;
   }
@@ -190,6 +201,7 @@ li {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
   }
+
   .word-array-box {
     grid-column: 1 / 2;
     grid-row: 3 / 4;
