@@ -33,8 +33,10 @@
     <div class="displayed-word-box">
       <h1 class="displayed-word"> {{ displayedWord }}</h1>
       <span></span>
-      <p class=englishWord *ngIf="showEng"> {{ vocabArr[CurrentWordIndex].english }} </p>
-      <p class=polishWord *ngIf="showPol"> {{ vocabArr[CurrentWordIndex].polish }}  </p>
+      <div class='word-display-box'>
+        <p class=englishWord *ngIf="showEng"> {{ vocabArr[CurrentWordIndex].english }} </p>
+        <p class=polishWord *ngIf="showPol"> {{ vocabArr[CurrentWordIndex].polish }}  </p>
+      </div>
     </div>
 
     <div class="answer-box">

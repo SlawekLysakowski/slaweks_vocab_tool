@@ -177,24 +177,23 @@ li {
 
   .trans-dir {
     display: flex;
-    margin: 1rem auto;
     justify-content: center;
+    margin: 0 auto;
   }
 
   .button-box {
     display: flex;
     justify-content: space-between;
-    margin: 0 3rem 0 1rem;
+    margin: 1rem;
   }
 
   .score-box {
     display: flex;
     justify-content: space-between;
-    margin-right: 3rem;
   }
 
-  .correct {
-    margin-right: auto;
+  .correct, .wrong {
+    font-size: 1.5rem;
   }
 
   .test-box {
@@ -202,11 +201,16 @@ li {
     grid-row: 2 / 3;
   }
 
+  .word-display-box {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .word-array-box {
     grid-column: 1 / 2;
     grid-row: 3 / 4;
     width: 100vw;
-    margin-top: 4rem;
+    margin-top: 8rem;
     justify-content: center;
   }
 }
