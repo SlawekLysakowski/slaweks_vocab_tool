@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { VocabModel } from '../vocab.model'
 import { VocabService } from '../vocab.service';
@@ -27,6 +27,7 @@ export class TestComponent implements OnInit{
   correct: number = 0;
   wrong: number = 0;
   vocabs: VocabModel[];
+  isMobile: boolean = false;
 
   constructor(public vocabService: VocabService, private http: HttpClient) {}
 
@@ -34,6 +35,7 @@ export class TestComponent implements OnInit{
     this.isLoading = true;
     this.vocabService.isTest = true;
     this.vocabService.getVocabs();
+    this.checkMobile();
     this.vocabsSub = this.vocabService.getVocUpdateListener()
       .subscribe(( vocabs: VocabModel[]) => {
         this.isLoading = false;
@@ -41,6 +43,11 @@ export class TestComponent implements OnInit{
         this.newVocabArr();
         this.newWord();
       });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  checkMobile(event?) {
+    this.isMobile = window.innerWidth <= 560;
   }
 
   newRandomNumber() {
@@ -93,7 +100,6 @@ export class TestComponent implements OnInit{
       this.showFeedback = false
     },2800);
 
-
     if (this.correctAnsArr.includes(this.answer)) {
       this.answer = '';
       this.rightAnswer();
@@ -103,7 +109,7 @@ export class TestComponent implements OnInit{
     }
   }
 
-  onEnter(event) {
+  onEnter(event): void {
     if (event.keyCode===13) {
       this.checkAnswer()
     }

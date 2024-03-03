@@ -161,7 +161,7 @@ li {
 @media (max-width: 35em) {
   main {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: 1fr 2fr 2fr;
     margin:  0 auto;
     height: 75vh;
     width: 95vw;
@@ -173,6 +173,7 @@ li {
   .control-panel {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
+    margin: 0 1rem 0 0;
   }
 
   .trans-dir {
@@ -205,15 +206,39 @@ li {
     grid-row: 2 / 3;
   }
 
-  .word-display-box {
+  .displayed-word-box {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .polEng-display-box {
+    grid-row: 1 / 2;
     display: flex;
     justify-content: space-between;
-    margin: 0.5rem 2rem 0 0;
+    margin: 0 2.5rem 0 0;
+  }
+
+  .englishWord, .polishWord {
+    margin: 0;
+  }
+
+  .displayed-word {
+    grid-row: 2 / 3;
+    margin: 0;
+  }
+
+  .answer-box {
+    margin: 0;
+  }
+
+  .feedback-box {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    margin: 0;
   }
 
   .word-array-box {
-    grid-column: 1 / 2;
-    grid-row: 3 / 4;
     width: 100vw;
     margin-top: 8rem;
     justify-content: center;

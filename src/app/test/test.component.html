@@ -27,13 +27,13 @@
     <p class="correct">Correct answers: {{ correct }} </p>
     <p class="wrong">Wrong answers:  {{ wrong }} </p>
   </div>
-
 </div>
+
   <div class="test-box">
     <div class="displayed-word-box">
       <h1 class="displayed-word"> {{ displayedWord }}</h1>
       <span></span>
-      <div class='word-display-box'>
+      <div class='polEng-display-box'>
         <p class=englishWord *ngIf="showEng"> {{ vocabArr[CurrentWordIndex].english }} </p>
         <p class=polishWord *ngIf="showPol"> {{ vocabArr[CurrentWordIndex].polish }}  </p>
       </div>
@@ -65,7 +65,7 @@
     <p class="feedback-answer" [innerText]='feedbackAnswer' *ngIf='showFeedback'></p>
   </div>
 
-  <div class="word-array-box">
+  <div class="word-array-box" *ngIf='!isMobile'>
     <ul>
             <li *ngFor='let vocab of vocabArr; let i = index ' [ngClass]="{'currentVocab' : i === CurrentWordIndex }">{{ japToKor? vocab.japanese : vocab.korean }}</li>
     </ul>
