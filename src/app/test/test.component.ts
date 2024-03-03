@@ -78,7 +78,7 @@ export class TestComponent implements OnInit{
     this.newWord();
   }
 
-  checkAnswer() {
+  checkAnswer(): void {
     this.correctAnsArr = this.japToKor?
       this.vocabArr[this.CurrentWordIndex].korean.split(",")
       :
@@ -91,11 +91,14 @@ export class TestComponent implements OnInit{
 
     setTimeout(() => {
       this.showFeedback = false
-    },2500);
+    },2800);
+
 
     if (this.correctAnsArr.includes(this.answer)) {
+      this.answer = '';
       this.rightAnswer();
     } else {
+      this.answer = '';
       this.wrongAnswer();
     }
   }
