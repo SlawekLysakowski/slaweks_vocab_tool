@@ -65,7 +65,7 @@
     <p class="feedback-answer" [innerText]='feedbackAnswer' *ngIf='showFeedback'></p>
   </div>
 
-  <div class="word-array-box" *ngIf='!isMobile'>
+  <div class="word-array-box" *ngIf='!vocabService.isMobile'>
     <ul>
             <li *ngFor='let vocab of vocabArr; let i = index ' [ngClass]="{'currentVocab' : i === CurrentWordIndex }">{{ japToKor? vocab.japanese : vocab.korean }}</li>
     </ul>

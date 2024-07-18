@@ -33,3 +33,12 @@ input {
     width: 95vw;
   }
 }
+
+/* Mobile version */
+@media (max-width: 35em) {
+
+  input {
+    height: 6rem;
+  }
+
+}

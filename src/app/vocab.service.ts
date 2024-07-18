@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { HostListener, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -15,6 +15,7 @@ export class VocabService {
   private vocabsUpdated = new Subject<VocabModel[]>();
   private VocabsWithCount = new Subject<{ vocabs: VocabModel[]; vocabCount: number }>();
   public isTest: boolean;
+  public isMobile: boolean = false;
 
   constructor(private http: HttpClient, private router: Router) {
   }
@@ -117,4 +118,13 @@ export class VocabService {
   getVocab(id: string) {
     return this.http.get<VocabModel>(BACKEND_URL + id);
   };
+
+  @HostListener('window:resize', ['$event'])
+  checkMobile(event?) {
+    this.isMobile = window.innerWidth <= 560;
+    if (window.visualViewport.width) {
+      this.isMobile = window.visualViewport.width <= 560;
+    }
+  }
+
 }

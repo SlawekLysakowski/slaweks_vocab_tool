@@ -21,10 +21,10 @@
     </div>
 
   <div *ngFor='let vocab of vocabs' class='list-vocabs'>
-      <div class='list-item'>{{ vocab.japanese }}</div>
-      <div class='list-item'>{{ vocab.korean }}</div>
-      <div class='list-item'>{{ vocab.english }}</div>
-      <div class='list-item'>{{ vocab.polish }}</div>
+      <div class='list-item list-item1'>{{ vocab.japanese }}</div>
+      <div class='list-item list-item2'>{{ vocab.korean }}</div>
+      <div class='list-item list-item3'>{{ vocab.english }}</div>
+      <div class='list-item list-item4'>{{ vocab.polish }}</div>
       <div class='list-buttons'>
         <a class='btn edit' [routerLink]="['/edit', vocab.id]">EDIT</a>
         <button class='btn delete' [currentID]='vocab.id' (click)='onConfirm(vocab.id)' >DEL</button>

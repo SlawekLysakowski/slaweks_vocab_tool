@@ -106,4 +106,41 @@ mat-paginator {
   main {
     width: 95vw;
   }
+
+  .list-vocabs {
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-rows: auto auto;
+    grid-column-gap: 1rem;
+    grid-template-areas:
+    "list-item1 list-item2 list-buttons"
+    "list-item3 list-item4 list-buttons";
+    height: 8rem;
+  }
+
+  .list-item1 {
+    grid-area: list-item1;
+  }
+
+  .list-item2 {
+    grid-area: list-item2;
+  }
+
+  .list-item3 {
+    grid-area: list-item3;
+  }
+
+  .list-item4 {
+    grid-area: list-item4;
+  }
+
+  .list-buttons {
+    grid-area: list-buttons;
+  }
+
+  .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
 }

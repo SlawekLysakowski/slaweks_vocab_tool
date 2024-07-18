@@ -27,7 +27,6 @@ export class TestComponent implements OnInit{
   correct: number = 0;
   wrong: number = 0;
   vocabs: VocabModel[];
-  isMobile: boolean = false;
 
   constructor(public vocabService: VocabService, private http: HttpClient) {}
 
@@ -35,7 +34,7 @@ export class TestComponent implements OnInit{
     this.isLoading = true;
     this.vocabService.isTest = true;
     this.vocabService.getVocabs();
-    this.checkMobile();
+    this.vocabService.checkMobile();
     this.vocabsSub = this.vocabService.getVocUpdateListener()
       .subscribe(( vocabs: VocabModel[]) => {
         this.isLoading = false;
@@ -43,11 +42,6 @@ export class TestComponent implements OnInit{
         this.newVocabArr();
         this.newWord();
       });
-  }
-
-  @HostListener('window:resize', ['$event'])
-  checkMobile(event?) {
-    this.isMobile = window.innerWidth <= 560;
   }
 
   newRandomNumber() {
