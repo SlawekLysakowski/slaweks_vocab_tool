@@ -206,6 +206,10 @@ li {
     grid-row: 2 / 3;
   }
 
+  .btn:active {
+    background-color: #000;
+  }
+
   .displayed-word-box {
     display: grid;
     grid-template-columns: 1fr;
