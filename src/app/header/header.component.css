@@ -60,19 +60,19 @@ a {
 
 @media (max-width: 50rem) {
   .logo  {
-    font-size: 2.5rem;
+    font-size: 2.9rem;
   }
 
   #memo {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.9rem;
+    height: 2.9rem;
   }
 }
 
 /* Mobile version */
 @media (max-width: 35rem) {
   nav {
-    width: 95vw;
+    width: 100vw;
   }
   .logo-div {
     width: 95vw;
